@@ -19,12 +19,12 @@ public class AuthController {
 	private AuthService authService;
 	
 	@PostMapping("/login")
-	public ResponseEntity<String> login (@RequestBody LoginRequest request){
+	public String login (@RequestBody LoginRequest request){
 		Dueno dueno = authService.authenticate(request.getCorreo(), request.getContrasena());
 		if(dueno != null) {
-			return ResponseEntity.ok("Inicio de sesión exitoso");
+			return "Inicio de sesión exitoso";
 		} else {
-			return ResponseEntity.status(401).body("Credenciales Invalidas");
+			return "Credenciales Invalidas";
 		}
 	}
 }
